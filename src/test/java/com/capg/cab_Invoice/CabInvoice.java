@@ -1,5 +1,7 @@
 package com.capg.cab_Invoice;
 
+import java.util.ArrayList;
+
 public class CabInvoice {
 
 	public static final double MIN_COST_PER_KM = 10.0;
@@ -9,5 +11,13 @@ public class CabInvoice {
 	public double calculateFare(double distance, int time) {
 		double totalFare = distance * MIN_COST_PER_KM + time * COST_PER_TIME;
 		return Math.max(totalFare, MIN_FARE);
+	}
+
+	public double calculateFare(ArrayList<Ride> rides) {
+		double totalFare = 0.0;
+		for (Ride ride : rides) {
+			totalFare += calculateFare(ride.distance, ride.time);
+		}
+		return totalFare;
 	}
 }
