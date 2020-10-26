@@ -40,4 +40,16 @@ public class CabInvoiceTest{
 		InvoiceSummary expectedSummay = new InvoiceSummary(2, 57);
 		Assert.assertEquals(expectedSummay, summary);
 	}
+	
+	@Test
+	public void givenUserIdReturnShouldReturnInvoiceSummary() {
+		String userId = "Person1";
+		InvoiceService service = new InvoiceService();
+		ArrayList<Ride> rides = new ArrayList<Ride>();
+		rides.add(new Ride(5.0, 2));
+		rides.add(new Ride(0.1, 1));
+		service.addRide(userId, rides);
+		ArrayList<Ride> result = service.getRides(userId);
+		Assert.assertEquals(rides, result);
+	}
 }
